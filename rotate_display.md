@@ -1,19 +1,21 @@
 ***How to rotate the display 180 degrees***
 
-Modify /boot/config.txt add follow line
+Modify /boot/config.txt add following
+```
+#display_rotate 1=90, 2=180, 3=270
+display_rotate=1
+```
 
-`display_rotate=1 #1:90;2: 180; 3: 270,`
-
-Modify 40-libinput.conf:
-
-`0 1 0 -1 0 1 0 0 1” ->90 "-1 0 1 0 -1 1 0 0 1”->180 "0 -1 1 1 0 0 0 0 1”->270`
-
-Copy 40-libinput-conf into place:
+Install libinput
 ```
 sudo apt-get install xserver-xorg-input-libinput
 sudo mkdir /etc/X11/xorg.conf.d
-sudo cp /usr/share/X11/xorg.conf.d/40-libinput.conf /etc/X11/xorg.conf.d/
+sudo ln -s /etc/X11/xorg.conf.d/40-libinput.conf /usr/share/X11/xorg.conf.d/40-libinput.conf
 ```
+
+Modify /usr/share/X11/xorg.conf.d/40-libinput.conf:
+
+`0 1 0 -1 0 1 0 0 1” ->90 "-1 0 1 0 -1 1 0 0 1”->180 "0 -1 1 1 0 0 0 0 1”->270`
 
 Modify 40-libinput-conf and add "Option "Cali..." line:
 ```
